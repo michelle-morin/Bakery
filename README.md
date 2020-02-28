@@ -8,11 +8,11 @@
 
 _This project is a C# console application for a bakery. When a user runs the application, they receive a prompt with a welcome message along with bread and pastry costs. A user may specify how many loaves of bread and how many pastries they'd like, and the application will return the total cost of the order. The total cost determination takes into account the following price structure:_ 
 * _a loaf of bread is $5_
-* _bread is buy 2, get 1 free (i.e., 3 loaves for $10)_
-* _10 loaves of bread is $30_
+* _bread is 3 loaves for $10 (i.e., buy 2, get 1 free))_
+* _bread is 10 loaves for $30_
 * _pastries are $2/each_
-* _3 pastries for $5_
-* _20 pastries for $30_
+* _pastries are 3 for $5_
+* _pastries are 20 for $30_
 
 ## Specifications:
 
