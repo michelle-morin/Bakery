@@ -36,7 +36,22 @@ namespace Bakery.Models
 
     public void ApplyDealsToSingleOrder()
     {
-      if (Quantity >= 3)
+      if (Quantity >= 20)
+      {
+        int firstRemainder = Quantity % 20;
+        int firstQuotient = Quantity / 20;
+        if (firstRemainder >= 3)
+        {
+          int secondRemainder = firstRemainder % 3;
+          int secondQuotient = firstRemainder / 3;
+          Price = (firstQuotient * 30) + (secondRemainder * 2) + (secondQuotient * 5);
+        }
+        else
+        {
+          Price = (firstQuotient * 30) + (firstRemainder * 2);
+        }
+      }
+      else if (Quantity >= 3)
       {
         int remainder = Quantity % 3;
         int quotient = Quantity / 3;
@@ -50,12 +65,22 @@ namespace Bakery.Models
 
     public static void ApplyPastryDeals()
     {
-      // int totalQuantity = 0;
-      // foreach(Pastry pastryOrder in _ordersOfPastries)
-      // {
-      //   totalQuantity += pastryOrder.Quantity;
-      // }
-      if (_totalQuantity >= 3)
+      if (_totalQuantity >= 20)
+      {
+        int firstRemainder = _totalQuantity % 20;
+        int firstQuotient = _totalQuantity / 20;
+        if (firstRemainder >= 3)
+        {
+          int secondRemainder = firstRemainder % 3;
+          int secondQuotient = firstRemainder / 3;
+          _totalPrice = (firstQuotient * 30) + (secondRemainder * 2) + (secondQuotient * 5);
+        }
+        else
+        {
+          _totalPrice = (firstQuotient * 30) + (firstRemainder * 2);
+        }
+      }
+      else if (_totalQuantity >= 3)
       {
         int remainder = _totalQuantity % 3;
         int quotient = _totalQuantity / 3;
