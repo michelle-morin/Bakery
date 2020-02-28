@@ -32,6 +32,7 @@ namespace Bakery
         int totalOrderPrice = GetTotalPrice();
         if (breadOrderTotal > 0)
         {
+          Console.Clear();
           Console.WriteLine("Your current total at Pierre's Bakery is $" + totalOrderPrice);
           AddToOrder();
         }
@@ -46,6 +47,7 @@ namespace Bakery
         int totalOrderPrice = GetTotalPrice();
         if (pastryOrderTotal > 0)
         {
+          Console.Clear();
           Console.WriteLine("Your current total at Pierre's Bakery is $" + totalOrderPrice);
           AddToOrder();
         }
@@ -62,11 +64,13 @@ namespace Bakery
         int totalOrderPrice = GetTotalPrice();
         if (breadTotal >= 0 && pastryTotal >= 0 && comboOrderTotal > 0)
         {
+          Console.Clear();
           Console.WriteLine("Your current total at Pierre's Bakery is $" + totalOrderPrice);
           AddToOrder();
         }
         else if (breadTotal == 0 && pastryTotal == 0)
         {
+          Console.Clear();
           Console.WriteLine("You did not select any bread or pastries to purchase.");
           Console.WriteLine("Your current total at Pierre's Bakery is $" + totalOrderPrice);
           AskToReturn();
