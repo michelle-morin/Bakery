@@ -14,10 +14,27 @@ namespace Bakery
 
     public static string InitializeOrder()
     {
+      Console.Clear();
       Console.BackgroundColor = ConsoleColor.Cyan;
       Console.ForegroundColor = ConsoleColor.Black;
-      Console.WriteLine("Welcome to Pierre's Bakery!");
-      Console.WriteLine("Bread is $5/loaf or $10/three loaves; pastries are $2/each or $5/three pastries.");
+      string pierre = @"
+       _____ _____ ______ _____  _____  ______ #  _____ 
+      |  __ \_   _|  ____|  __ \|  __ \|  ____|# / ____|
+      | |__) || | | |__  | |__) | |__) | |__    | (___  
+      |  ___/ | | |  __| |  _  /|  _  /|  __|    \___ \ 
+      | |    _| |_| |____| | \ \| | \ \| |____   ____) |
+      |_|   |_____|______|_|  \_\_|  \_\______| |_____/ ";
+      string bakery = @"
+       ____          _  ________ _______     __
+      |  _ \   /\   | |/ /  ____|  __ \ \   / /
+      | |_) | /  \  | ' /| |__  | |__) \ \_/ / 
+      |  _ < / /\ \ |  < |  __| |  _  / \   /  
+      | |_) / ____ \| . \| |____| | \ \  | |   
+      |____/_/    \_\_|\_\______|_|  \_\ |_|   ";
+      Console.WriteLine(pierre);
+      Console.WriteLine(bakery);
+      Console.WriteLine("Bread is $5/loaf or $10/three loaves.");
+      Console.WriteLine("Pastries are $2/each, $5/three, or $30/twenty.");
       Console.WriteLine("Would you like to purchase bread, pastry, or both?");
       Console.WriteLine("[BREAD] [PASTRY] [BOTH]");
       string bakerySelection = Console.ReadLine();
@@ -38,7 +55,7 @@ namespace Bakery
         }
         else
         {
-          AskToReturn();
+          AddToOrder();
         }
       }
       else if (selection.ToLower() == "pastry")
@@ -53,7 +70,7 @@ namespace Bakery
         }
         else
         {
-          AskToReturn();
+          AddToOrder();
         }
       }
       else if (selection.ToLower() == "both")
@@ -73,7 +90,7 @@ namespace Bakery
           Console.Clear();
           Console.WriteLine("You did not select any bread or pastries to purchase.");
           Console.WriteLine("Your current total at Pierre's Bakery is $" + totalOrderPrice);
-          AskToReturn();
+          AddToOrder();
         }
         else
         {
