@@ -12,13 +12,13 @@ _This project is a C# console application for a bakery. When a user runs the app
 
 | Specification | Example Input | Example Output |
 | ------------- |:-------------:| -------------------:|
-| Application greets user with welcome message when user starts application | User enters "dotnet run" in Terminal | "Welcome to Pierre's Bakery! We sell bread for $5/loaf or $10/three loaves, and also sell pastries for $2/each or $5/three pastries. |
+| Application greets user with welcome message when user starts application | User enters "dotnet run" in Terminal | "Welcome to Pierre's Bakery! We sell bread for $5/loaf or $10/three loaves, and also sell pastries for $2/each or $5/three pastries." |
 | Application asks user if they would like to purchase bread, pastry, or both | (N/A, this will occur upon welcome message) | "Would you like to purchase bread, pastry, or both?" |
 | When user enters "bread", the application prompts the user to enter how many loaves of bread they would like to purchase. | "bread" | "Please enter a quantity of bread loaves you would like to purchase:" |
-| Application returns total price of bread order based on user input quantity | 3 | $10 |
 | When user enters "pastry", the application prompts the user to enter how many pastries they would like to purchase. | "pastry" | "Please enter a quantity of pastries you would like to purchase:" |
-| Application returns total price of pastry order based on user input quantity | 3 | $5 |
 | When user enters "both", the application prompts the user to enter how many bread loaves they would like to purchase, then prompts the user to enter how many pastries they would like to purchase. | "both" | "Please enter a quantity of bread loaves you would like to purchase:", (after user enters response to first question:) "Please enter a quantity of pastries you would like to purchase:" |
+| Application returns total price of bread order based on user input quantity | 3 | $10 |
+| Application returns total price of pastry order based on user input quantity | 3 | $5 |
 | Application returns total price of bakery order based on user input quantities for bread and pastries | 1, 2 | $9 |
 
 ## Setup/Installation Requirements
