@@ -31,9 +31,10 @@ namespace Bakery
       if (selection.ToLower() == "bread")
       {
         int breadOrderTotal = OrderBread();
+        int totalOrderPrice = Pastry.GetTotalPastryPrice() + Bread.GetTotalBreadPrice();
         if (breadOrderTotal > 0)
         {
-          Console.WriteLine("Your total will be $" + breadOrderTotal);
+          Console.WriteLine("Your total will be $" + totalOrderPrice);
           AddToOrder();
         }
         else
@@ -44,9 +45,10 @@ namespace Bakery
       else if (selection.ToLower() == "pastry")
       {
         int pastryOrderTotal = OrderPastry();
+        int totalOrderPrice = Pastry.GetTotalPastryPrice() + Bread.GetTotalBreadPrice();
         if (pastryOrderTotal > 0)
         {
-          Console.WriteLine("Your total will be $" + pastryOrderTotal);
+          Console.WriteLine("Your total will be $" + totalOrderPrice);
           AddToOrder();
         }
         else
@@ -59,14 +61,16 @@ namespace Bakery
         int breadTotal = OrderBread();
         int pastryTotal = OrderPastry();
         int comboOrderTotal = breadTotal + pastryTotal;
+        int totalOrderPrice = Pastry.GetTotalPastryPrice() + Bread.GetTotalBreadPrice();
         if (breadTotal >= 0 && pastryTotal >= 0 && comboOrderTotal > 0)
         {
-          Console.WriteLine("Your total will be $" + comboOrderTotal);
+          Console.WriteLine("Your total will be $" + totalOrderPrice);
           AddToOrder();
         }
         else if (breadTotal == 0 && pastryTotal == 0)
         {
           Console.WriteLine("You did not select any bread or pastries to purchase.");
+          Console.WriteLine("Your current order total is $" + totalOrderPrice);
           AskToReturn();
         }
         else
