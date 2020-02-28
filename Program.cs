@@ -26,15 +26,12 @@ namespace Bakery
 
     public static void TakeOrder(string selection)
     {
-      List<Bread> allBreadOrders = Bread.GetThatBread();
-      List<Pastry> allPastryOrders = Pastry.GetThePastries();
       if (selection.ToLower() == "bread")
       {
         int breadOrderTotal = OrderBread();
-        int totalOrderPrice = Pastry.GetTotalPastryPrice() + Bread.GetTotalBreadPrice();
+        int totalOrderPrice = GetTotalPrice();
         if (breadOrderTotal > 0)
         {
-          Console.WriteLine("Added bread cost: $" + breadOrderTotal);
           Console.WriteLine("Your current total at Pierre's Bakery is $" + totalOrderPrice);
           AddToOrder();
         }
@@ -46,10 +43,9 @@ namespace Bakery
       else if (selection.ToLower() == "pastry")
       {
         int pastryOrderTotal = OrderPastry();
-        int totalOrderPrice = Pastry.GetTotalPastryPrice() + Bread.GetTotalBreadPrice();
+        int totalOrderPrice = GetTotalPrice();
         if (pastryOrderTotal > 0)
         {
-          Console.WriteLine("Added pastry cost: $" + pastryOrderTotal);
           Console.WriteLine("Your current total at Pierre's Bakery is $" + totalOrderPrice);
           AddToOrder();
         }
@@ -63,10 +59,9 @@ namespace Bakery
         int breadTotal = OrderBread();
         int pastryTotal = OrderPastry();
         int comboOrderTotal = breadTotal + pastryTotal;
-        int totalOrderPrice = Pastry.GetTotalPastryPrice() + Bread.GetTotalBreadPrice();
+        int totalOrderPrice = GetTotalPrice();
         if (breadTotal >= 0 && pastryTotal >= 0 && comboOrderTotal > 0)
         {
-          Console.WriteLine("Added bread and pastry cost: $" + comboOrderTotal);
           Console.WriteLine("Your current total at Pierre's Bakery is $" + totalOrderPrice);
           AddToOrder();
         }
@@ -95,9 +90,8 @@ namespace Bakery
       if (breadQuantity > 0)
       {
         Bread breadOrder = new Bread(breadQuantity);
-        Bread.ApplyBreadDeals();
-        int breadOrderTotal = Bread.GetTotalBreadPrice();
-        return breadOrderTotal;
+        breadOrder.ApplyDealsToSingleOrder();
+        return breadOrder.Price;
       }
       else
       {
@@ -113,14 +107,23 @@ namespace Bakery
       if (pastryQuantity > 0)
       {
         Pastry pastryOrder = new Pastry(pastryQuantity);
-        Pastry.ApplyPastryDeals();
-        int pastryOrderTotal = Pastry.GetTotalPastryPrice();
-        return pastryOrderTotal;
+        pastryOrder.ApplyDealsToSingleOrder();
+        return pastryOrder.Price;
       }
       else
       {
         return 0;
       }
+    }
+
+    public static int GetTotalPrice()
+    {
+      List<Bread> allBreadOrders = Bread.GetThatBread();
+      List<Pastry> allPastryOrders = Pastry.GetThePastries();
+      Pastry.ApplyPastryDeals();
+      Bread.ApplyBreadDeals();
+      int totalOrderPrice = Pastry.GetTotalPastryPrice() + Bread.GetTotalBreadPrice();
+      return totalOrderPrice;
     }
 
     public static int ValidateInputQuantity(string quantity)
@@ -163,6 +166,7 @@ namespace Bakery
 
     public static void AddToOrder()
     {
+      Console.WriteLine("Your total order includes: " + Bread.GetQuantity() + " bread, " + Pastry.GetQuantity() + " pastry");
       Console.WriteLine("Would you like to add additional bread or pastry to your order?");
       Console.WriteLine("[BREAD] [PASTRY] [BOTH] [QUIT]");
       string addOrNot = Console.ReadLine();
