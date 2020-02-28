@@ -17,7 +17,7 @@ namespace Bakery.Models
     {
       if (Quantity % 3 == 0)
       {
-        Price = (Quantity / 3) * 5;
+        Price = (Quantity / 3) * 10;
       }
       else if (Quantity >= 3)
       {

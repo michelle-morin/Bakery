@@ -13,8 +13,6 @@ namespace Bakery.Models
       Price = 2 * quantity;
     }
 
-    // 3 for 5
-
     public void ApplyPastryDeals()
     {
       if (Quantity >= 3)
