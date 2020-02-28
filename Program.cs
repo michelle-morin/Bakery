@@ -24,32 +24,48 @@ namespace Bakery
     {
       if (selection.ToLower() == "bread")
       {
-        Console.WriteLine("Please enter a quantity of bread loaves you would like to purchase:");
-        string stringBreadQuantity = Console.ReadLine();
-        int breadQuantity = int.Parse(stringBreadQuantity);
-        // add bread order logic
+        int breadOrderTotal = OrderBread();
+        Console.WriteLine("Your total will be $" + breadOrderTotal);
+
       }
       else if (selection.ToLower() == "pastry")
       {
-        Console.WriteLine("Please enter a quantity of pastries you would like to purchase:");
-        string stringPastryQuantity = Console.ReadLine();
-        int pastryQuantity = int.Parse(stringPastryQuantity);
-        // add pastry order logic
+        int pastryOrderTotal = OrderPastry();
+        Console.WriteLine("Your total will be $" + pastryOrderTotal);
       }
       else if (selection.ToLower() == "both")
       {
-        Console.WriteLine("Please enter a quantity of bread loaves you would like to purchase:");
-        string stringBreadQuantity = Console.ReadLine();
-        int breadQuantity = int.Parse(stringBreadQuantity);
-        Console.WriteLine("Please enter a quantity of pastries you would like to purchase:");
-        string stringPastryQuantity = Console.ReadLine();
-        int pastryQuantity = int.Parse(stringPastryQuantity);
-        // add logic for combo order
+        int breadTotal = OrderBread();
+        int pastryTotal = OrderPastry();
+        int comboOrderTotal = breadTotal + pastryTotal;
+        Console.WriteLine("Your total will be $" + comboOrderTotal);
       }
       else
       {
         Main();
       }
+    }
+
+    public static int OrderBread()
+    {
+      Console.WriteLine("Please enter a quantity of bread loaves you would like to purchase:");
+      string stringBreadQuantity = Console.ReadLine();
+      int breadQuantity = int.Parse(stringBreadQuantity);
+      Bread breadOrder = new Bread(breadQuantity);
+      breadOrder.ApplyBreadDeals();
+      int breadOrderTotal = breadOrder.Price;
+      return breadOrderTotal;
+    }
+    
+    public static int OrderPastry()
+    {
+      Console.WriteLine("Please enter a quantity of pastries you would like to purchase:");
+      string stringPastryQuantity = Console.ReadLine();
+      int pastryQuantity = int.Parse(stringPastryQuantity);
+      Pastry pastryOrder = new Pastry(pastryQuantity);
+      pastryOrder.ApplyPastryDeals();
+      int pastryOrderTotal = pastryOrder.Price;
+      return pastryOrderTotal;
     }
   }
 }
