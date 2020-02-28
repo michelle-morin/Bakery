@@ -36,7 +36,22 @@ namespace Bakery.Models
 
     public void ApplyDealsToSingleOrder()
     {
-      if (Quantity % 3 == 0)
+      if (Quantity >= 10)
+      {
+        int firstRemainder = Quantity % 10;
+        int firstQuotient = Quantity / 10;
+        if (firstRemainder >= 3)
+        {
+          int secondRemainder = firstRemainder % 3;
+          int secondQuotient = firstRemainder / 3;
+          Price = (firstQuotient * 30) + (secondRemainder * 5) + (secondQuotient * 10);
+        }
+        else
+        {
+          Price = (firstQuotient * 30) + (firstRemainder * 5);
+        } 
+      }
+      else if (Quantity % 3 == 0)
       {
         Price = (Quantity / 3) * 10;
       }
@@ -50,7 +65,22 @@ namespace Bakery.Models
 
     public static void ApplyBreadDeals()
     {
-      if (_totalQuantity % 3 == 0)
+      if (_totalQuantity >= 10)
+      {
+        int firstRemainder = _totalQuantity % 10;
+        int firstQuotient = _totalQuantity / 10;
+        if (firstRemainder >= 3)
+        {
+          int secondRemainder = firstRemainder % 3;
+          int secondQuotient = firstRemainder / 3;
+          _totalPrice = (firstQuotient * 30) + (secondRemainder * 5) + (secondQuotient * 10);
+        }
+        else
+        {
+          _totalPrice = (firstQuotient * 30) + (firstRemainder * 5);
+        } 
+      }
+      else if (_totalQuantity % 3 == 0)
       {
         _totalPrice = (_totalQuantity / 3) * 10;
       }

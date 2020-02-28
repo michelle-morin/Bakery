@@ -33,7 +33,7 @@ namespace Bakery
       |____/_/    \_\_|\_\______|_|  \_\ |_|   ";
       Console.WriteLine(pierre);
       Console.WriteLine(bakery);
-      Console.WriteLine("Bread is $5/loaf or $10/three loaves.");
+      Console.WriteLine("Bread is $5/loaf, $10/three loaves, or $30/ten loaves");
       Console.WriteLine("Pastries are $2/each, $5/three, or $30/twenty.");
       Console.WriteLine("Would you like to purchase bread, pastry, or both?");
       Console.WriteLine("[BREAD] [PASTRY] [BOTH]");
