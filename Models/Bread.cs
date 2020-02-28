@@ -50,11 +50,6 @@ namespace Bakery.Models
 
     public static void ApplyBreadDeals()
     {
-      // int totalQuantity = 0;
-      // foreach(Bread breadOrder in _ordersOfBread)
-      // {
-      //   totalQuantity += breadOrder.Quantity;
-      // }
       if (_totalQuantity % 3 == 0)
       {
         _totalPrice = (_totalQuantity / 3) * 10;
