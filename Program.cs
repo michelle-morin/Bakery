@@ -15,8 +15,8 @@ namespace Bakery
     public static string InitializeOrder()
     {
       Console.Clear();
-      Console.BackgroundColor = ConsoleColor.Cyan;
-      Console.ForegroundColor = ConsoleColor.Black;
+      Console.BackgroundColor = ConsoleColor.White;
+      Console.ForegroundColor = ConsoleColor.Magenta;
       string pierre = @"
        _____ _____ ______ _____  _____  ______ #  _____ 
       |  __ \_   _|  ____|  __ \|  __ \|  ____|# / ____|
@@ -30,13 +30,14 @@ namespace Bakery
       | |_) | /  \  | ' /| |__  | |__) \ \_/ / 
       |  _ < / /\ \ |  < |  __| |  _  / \   /  
       | |_) / ____ \| . \| |____| | \ \  | |   
-      |____/_/    \_\_|\_\______|_|  \_\ |_|   ";
-      Console.WriteLine(pierre);
-      Console.WriteLine(bakery);
-      Console.WriteLine("Bread is $5/loaf, $10/three loaves, or $30/ten loaves");
-      Console.WriteLine("Pastries are $2/each, $5/three, or $30/twenty.");
-      Console.WriteLine("Would you like to purchase bread, pastry, or both?");
-      Console.WriteLine("[BREAD] [PASTRY] [BOTH]");
+      |____/_/    \_\_|\_\______|_|  \_\ |_|   
+                                                ";
+      Console.WriteLine("".PadLeft(2) + pierre);
+      Console.WriteLine("".PadLeft(2) + bakery);
+      Console.WriteLine("".PadLeft(8) + "Bread is $5/loaf, $10/three loaves, or $30/ten loaves");
+      Console.WriteLine("".PadLeft(8) + "Pastries are $2/each, $5/three, or $30/twenty.");
+      Console.WriteLine("".PadLeft(8) + "Would you like to purchase bread, pastry, or both?");
+      Console.WriteLine("".PadLeft(20) + "[BREAD] [PASTRY] [BOTH]");
       string bakerySelection = Console.ReadLine();
       return bakerySelection;
     }
@@ -50,7 +51,7 @@ namespace Bakery
         if (breadOrderTotal > 0)
         {
           Console.Clear();
-          Console.WriteLine("Your current total at Pierre's Bakery is $" + totalOrderPrice);
+          Console.WriteLine("".PadLeft(4) + "Your current total at Pierre's Bakery is $" + totalOrderPrice);
           AddToOrder();
         }
         else
@@ -65,7 +66,7 @@ namespace Bakery
         if (pastryOrderTotal > 0)
         {
           Console.Clear();
-          Console.WriteLine("Your current total at Pierre's Bakery is $" + totalOrderPrice);
+          Console.WriteLine("".PadLeft(4) + "Your current total at Pierre's Bakery is $" + totalOrderPrice);
           AddToOrder();
         }
         else
@@ -82,14 +83,14 @@ namespace Bakery
         if (breadTotal >= 0 && pastryTotal >= 0 && comboOrderTotal > 0)
         {
           Console.Clear();
-          Console.WriteLine("Your current total at Pierre's Bakery is $" + totalOrderPrice);
+          Console.WriteLine("".PadLeft(4) + "Your current total at Pierre's Bakery is $" + totalOrderPrice);
           AddToOrder();
         }
         else if (breadTotal == 0 && pastryTotal == 0)
         {
           Console.Clear();
-          Console.WriteLine("You did not select any bread or pastries to purchase.");
-          Console.WriteLine("Your current total at Pierre's Bakery is $" + totalOrderPrice);
+          Console.WriteLine("".PadLeft(4) + "You did not select any bread or pastries to purchase.");
+          Console.WriteLine("".PadLeft(4) + "Your current total at Pierre's Bakery is $" + totalOrderPrice);
           AddToOrder();
         }
         else
@@ -105,7 +106,7 @@ namespace Bakery
 
     public static int OrderBread()
     {
-      Console.WriteLine("Please enter a quantity of bread loaves you would like to purchase:");
+      Console.WriteLine("".PadLeft(4) + "Please enter a quantity of bread loaves you would like to purchase:");
       string stringBreadQuantity = Console.ReadLine();
       int breadQuantity = ValidateInputQuantity(stringBreadQuantity);
       if (breadQuantity > 0)
@@ -122,7 +123,7 @@ namespace Bakery
 
     public static int OrderPastry()
     {
-      Console.WriteLine("Please enter a quantity of pastries you would like to purchase:");
+      Console.WriteLine("".PadLeft(4) + "Please enter a quantity of pastries you would like to purchase:");
       string stringPastryQuantity = Console.ReadLine();
       int pastryQuantity = ValidateInputQuantity(stringPastryQuantity);
       if (pastryQuantity > 0)
@@ -156,20 +157,20 @@ namespace Bakery
       }
       catch (FormatException)
       {
-        Console.WriteLine("The quantity entered is not valid");
+        Console.WriteLine("".PadLeft(4) + "The quantity entered is not valid");
         return 0;
       }
       catch (Exception exception)
       {
-        Console.WriteLine("Unexpected error: " + exception.Message);
+        Console.WriteLine("".PadLeft(4) + "Unexpected error: " + exception.Message);
         return 0;
       }
     }
 
     public static void AskToReturn()
     {
-      Console.WriteLine("Would you like to return to the main menu?");
-      Console.WriteLine("[YES] or [NO]");
+      Console.WriteLine("".PadLeft(4) + "Would you like to return to the main menu?");
+      Console.WriteLine("".PadLeft(10) + "[YES] or [NO]");
       string returnToMenu = Console.ReadLine();
       if (returnToMenu.ToLower() == "yes" || returnToMenu.ToLower() == "y")
       {
@@ -177,7 +178,7 @@ namespace Bakery
       }
       else if (returnToMenu.ToLower() == "no" || returnToMenu.ToLower() == "n")
       {
-        Console.WriteLine("Have a nice day!");
+        DisplayComeAgain();
       }
       else
       {
@@ -187,9 +188,9 @@ namespace Bakery
 
     public static void AddToOrder()
     {
-      Console.WriteLine("Your total order includes: " + Bread.GetQuantity() + " bread, " + Pastry.GetQuantity() + " pastry");
-      Console.WriteLine("Would you like to add additional bread or pastry to your order?");
-      Console.WriteLine("[BREAD] [PASTRY] [BOTH] [QUIT]");
+      Console.WriteLine("".PadLeft(4) + "Your total order includes: " + Bread.GetQuantity() + " bread, " + Pastry.GetQuantity() + " pastry");
+      Console.WriteLine("".PadLeft(4) + "Would you like to add additional bread or pastry to your order?");
+      Console.WriteLine("".PadLeft(16) + "[BREAD] [PASTRY] [BOTH] [QUIT]");
       string addOrNot = Console.ReadLine();
       if (addOrNot.ToLower() == "bread")
       {
@@ -205,12 +206,41 @@ namespace Bakery
       }
       else if (addOrNot.ToLower() == "quit" || addOrNot.ToLower() == "no")
       {
-        Console.WriteLine("Come again soon!");
+        DisplayComeAgain();
       }
       else
       {
         AddToOrder();
       }
+    }
+
+    public static void DisplayComeAgain()
+    {
+      string come = @"
+        _____ ____  __  __ ______ 
+       / ____/ __ \|  \/  |  ____|
+      | |   | |  | | \  / | |__   
+      | |   | |  | | |\/| |  __|  
+      | |___| |__| | |  | | |____ 
+       \_____\____/|_|  |_|______|";
+      string again = @"
+                _____          _____ _   _ 
+          /\   / ____|   /\   |_   _| \ | |
+         /  \ | |  __   /  \    | | |  \| |
+        / /\ \| | |_ | / /\ \   | | | . ` |
+       / ____ \ |__| |/ ____ \ _| |_| |\  |
+      /_/    \_\_____/_/    \_\_____|_| \_|";
+      string soon = @"
+        _____  ____   ____  _   _ 
+       / ____|/ __ \ / __ \| \ | |
+      | (___ | |  | | |  | |  \| |
+       \___ \| |  | | |  | | . ` |
+       ____) | |__| | |__| | |\  |
+      |_____/ \____/ \____/|_| \_|";
+      Console.Clear();
+      Console.WriteLine(come);
+      Console.WriteLine(again);
+      Console.WriteLine(soon);
     }
   }
 }
