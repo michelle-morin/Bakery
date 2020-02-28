@@ -10,7 +10,8 @@ _This project is a C# console application for a bakery. When a user runs the app
 * _a loaf of bread is $5_
 * _bread is buy 2, get 1 free (i.e., 3 loaves for $10)_
 * _pastries are $2/each_
-* _3 pastries is $5_
+* _3 pastries for $5_
+* _20 pastries for $30_
 
 ## Specifications:
 
