@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Bakery.Models;
 
 namespace Bakery
@@ -25,12 +26,15 @@ namespace Bakery
 
     public static void TakeOrder(string selection)
     {
+      List<Bread> allBreadOrders = Bread.GetThatBread();
+      List<Pastry> allPastryOrders = Pastry.GetThePastries();
       if (selection.ToLower() == "bread")
       {
         int breadOrderTotal = OrderBread();
         if (breadOrderTotal > 0)
         {
           Console.WriteLine("Your total will be $" + breadOrderTotal);
+          AddToOrder();
         }
         else
         {
@@ -43,6 +47,7 @@ namespace Bakery
         if (pastryOrderTotal > 0)
         {
           Console.WriteLine("Your total will be $" + pastryOrderTotal);
+          AddToOrder();
         }
         else
         {
@@ -57,6 +62,7 @@ namespace Bakery
         if (breadTotal >= 0 && pastryTotal >= 0 && comboOrderTotal > 0)
         {
           Console.WriteLine("Your total will be $" + comboOrderTotal);
+          AddToOrder();
         }
         else if (breadTotal == 0 && pastryTotal == 0)
         {
@@ -82,8 +88,8 @@ namespace Bakery
       if (breadQuantity > 0)
       {
         Bread breadOrder = new Bread(breadQuantity);
-        breadOrder.ApplyBreadDeals();
-        int breadOrderTotal = breadOrder.Price;
+        Bread.ApplyBreadDeals();
+        int breadOrderTotal = Bread.GetTotalBreadPrice();
         return breadOrderTotal;
       }
       else
@@ -97,11 +103,11 @@ namespace Bakery
       Console.WriteLine("Please enter a quantity of pastries you would like to purchase:");
       string stringPastryQuantity = Console.ReadLine();
       int pastryQuantity = ValidateInputQuantity(stringPastryQuantity);
-      if (pastryQuantity >= 0)
+      if (pastryQuantity > 0)
       {
         Pastry pastryOrder = new Pastry(pastryQuantity);
-        pastryOrder.ApplyPastryDeals();
-        int pastryOrderTotal = pastryOrder.Price;
+        Pastry.ApplyPastryDeals();
+        int pastryOrderTotal = Pastry.GetTotalPastryPrice();
         return pastryOrderTotal;
       }
       else
@@ -120,12 +126,12 @@ namespace Bakery
       catch (FormatException)
       {
         Console.WriteLine("The quantity entered is not valid");
-        return -1;
+        return 0;
       }
       catch (Exception exception)
       {
         Console.WriteLine("Unexpected error: " + exception.Message);
-        return -1;
+        return 0;
       }
     }
 
@@ -140,11 +146,38 @@ namespace Bakery
       }
       else if (returnToMenu.ToLower() == "no" || returnToMenu.ToLower() == "n")
       {
-        Console.WriteLine("Come again soon!");
+        Console.WriteLine("Have a nice day!");
       }
       else
       {
         AskToReturn();
+      }
+    }
+
+    public static void AddToOrder()
+    {
+      Console.WriteLine("Would you like to add additional bread or pastry to your order?");
+      Console.WriteLine("[BREAD] [PASTRY] [BOTH] [QUIT]");
+      string addOrNot = Console.ReadLine();
+      if (addOrNot.ToLower() == "bread")
+      {
+        TakeOrder("bread");
+      }
+      else if (addOrNot.ToLower() == "pastry")
+      {
+        TakeOrder("pastry");
+      }
+      else if (addOrNot.ToLower() == "both")
+      {
+        TakeOrder("both");
+      }
+      else if (addOrNot.ToLower() == "quit" || addOrNot.ToLower() == "no")
+      {
+        Console.WriteLine("Come again soon!");
+      }
+      else
+      {
+        AddToOrder();
       }
     }
   }
