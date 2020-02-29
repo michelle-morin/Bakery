@@ -17,6 +17,15 @@ namespace Bakery
       Console.Clear();
       Console.BackgroundColor = ConsoleColor.White;
       Console.ForegroundColor = ConsoleColor.Magenta;
+      string muffin = @"
+          _.-------._
+      .-';  ;`-'& ; `&.
+      & &  ;  &   ; ;   \
+      \      ;    &   &_/
+       |***---...---***|
+       | | | | | | | | |
+       | | | | | | | | |
+       `----.|.|.|.----` ";
       string pierre = @"
        _____ _____ ______ _____  _____  ______ #  _____ 
       |  __ \_   _|  ____|  __ \|  __ \|  ____|# / ____|
@@ -32,6 +41,7 @@ namespace Bakery
       | |_) / ____ \| . \| |____| | \ \  | |   
       |____/_/    \_\_|\_\______|_|  \_\ |_|   
                                                 ";
+      Console.WriteLine("".PadLeft(20) + muffin);
       Console.WriteLine("".PadLeft(2) + pierre);
       Console.WriteLine("".PadLeft(2) + bakery);
       Console.WriteLine("".PadLeft(8) + "Bread is $5/loaf, $10/three loaves, or $30/ten loaves");
