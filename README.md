@@ -64,6 +64,7 @@ _To view/edit the source code of this application, open the contents of the Bake
 * _Git_
 * _C#_
 * _.NET Core 2.2_
+* _dotnet script_
 
 ### License
 
